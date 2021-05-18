@@ -16,6 +16,97 @@ Our product is promoted through branches. Master is merged to val to affect a ma
 
 ![Architecture Diagram](./.images/architecture.svg?raw=true)
 
+## Installing Prerequisites
+
+1. #### Homebrew
+
+    - Open terminal. Enter this command:
+        ```
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        ```
+    - Run `brew -v` to verify install.
+
+1. #### Git
+
+    - Homebrew should have given you a git install for free.
+    - Run `git --version` to verify install.
+
+1. #### NVM
+
+    - Open terminal. Enter this command:
+        ```
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
+        source ~/.bashrc;
+        source ~/.bash_profile;
+        ```
+    
+    - Run `nvm -v` or `command -v nvm` to verify install.
+
+1. #### NodeJS
+
+    - Open terminal. Enter this command:
+        ```
+        nvm install 12.20.0
+        ```
+
+    - Run `node --version` to verify install.
+    - This project enforces using a specific version of node.
+        - It is specified in the file `.nvmrc`, and matches the Lambda runtime.
+
+1. #### AWS CLI
+
+    - Download [this package](https://awscli.amazonaws.com/AWSCLIV2.pkg).
+    - Open Finder, and double-click the downloaded file.
+    - Click through the installer steps in the gui; accept all defaults.
+    - Open terminal.
+    - Run `aws --version` to verify install.
+
+1. #### AWS access keys & Cloud Tamer
+    
+    - TBD
+    - AWS Account: You'll need an AWS account with appropriate IAM permissions (admin recommended) to deploy this app in Amazon.
+
+1. #### Tailing AWSLogs
+    
+    - Open terminal. Enter this command:
+        ```
+        brew install awslogs
+        ```
+    - Run `awslogs --version` to verify install.
+    - See [here](https://github.com/jorgebastida/awslogs) for more information.
+
+1. #### Docker Desktop
+
+    - Open browser and download [Docker Desktop](https://www.docker.com/products/docker-desktop)
+    - Open Finder, and double-click the downloaded file.
+    - Drag Docker Desktop to your Applications folder
+    - Press cmd + space, type `docker`, and hit enter. This should open Docker Desktop.
+
+1. #### Code Climate
+
+    - Open terminal. Enter this command:
+        ```
+        brew tap codeclimate/formulae
+        brew install codeclimate
+        ```
+    - Run `codeclimate help` to verify install.
+
+1. #### Serverless
+
+    -  Open terminal. Enter this command:
+        ```
+        npm i -g serverless
+        ```
+    - Run `sls --version` to verify install.
+
+1. #### Yarn
+
+    - Open terminal. Enter this command:
+        ```
+        brew install yarn
+        ```
+    - Run `yarn version` to verify install.
+
 ## Local Dev
 
 Run all the services locally with the command `./dev local`
@@ -49,33 +140,6 @@ Building the app locally
 Running tests locally
 
 - todo
-
-## Requirements
-
-Node - we enforce using a specific version of node, specified in the file `.nvmrc`. This version matches the Lambda runtime. We recommend managing node versions using [NVM](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-Serverless - Get help installing it here: [Serverless Getting Started page](https://www.serverless.com/framework/docs/providers/aws/guide/installation/)
-
-Yarn - in order to install dependencies, you need to [install yarn](https://classic.yarnpkg.com/en/docs/install/).
-
-AWS Account: You'll need an AWS account with appropriate IAM permissions (admin recommended) to deploy this app in Amazon.
-
-If you are on a Mac, you should be able to install all the dependencies like so:
-
-```
-# install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-
-# select the version specified in .nvmrc
-nvm install
-nvm use
-
-# install yarn
-brew install yarn
-
-# run dev
-./dev local
-```
 
 ## Dependencies
 
