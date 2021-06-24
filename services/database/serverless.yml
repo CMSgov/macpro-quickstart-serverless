@@ -5,21 +5,16 @@ frameworkVersion: "2"
 plugins:
   - serverless-dynamodb-local
   - serverless-stack-termination-protection
-  - serverless-deployment-bucket
+  - serverless-s3-bucket-helper
 
 custom:
   stage: ${opt:stage, self:provider.stage}
   region: ${opt:region, self:provider.region}
   serverlessTerminationProtection:
-    stages: # This is a list of common names for important envs that should not be destroyed.  You can remove the stage names your project doesn't use; this list is meant to be inclusive.
+    stages:
       - master
       - val
       - production
-      - develop
-      - main
-      - impl
-      - val
-      - prod
   tableName: ${self:custom.stage}-amendments
   dynamodb:
     stages:
@@ -28,17 +23,11 @@ custom:
       port: 8000
       inMemory: true
       migrate: true
-  deploymentBucket:
-    versioning: true
 
 provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-1
-  deploymentBucket:
-    name: ${file(./../../libs/accountId.js):accountId}-${self:service}-${self:custom.stage}-deployment-bucket
-    maxPreviousDeploymentArtifacts: 1
-    serverSideEncryption: AES256
 
 resources:
   Resources:

@@ -8,20 +8,16 @@ plugins:
   - serverless-s3-local
   - serverless-stack-termination-protection
   - serverless-iam-helper
-  - serverless-deployment-bucket
+  - serverless-s3-bucket-helper
 
 provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-1
-  deploymentBucket:
-    name: ${file(./../../libs/accountId.js):accountId}-${self:service}-${self:custom.stage}-deployment-bucket
-    maxPreviousDeploymentArtifacts: 1
-    serverSideEncryption: AES256
   iam:
     role:
-      path: ${self:custom.iamPath}
-      permissionsBoundary: ${self:custom.iamPermissionsBoundaryPolicy}
+      path: ${ssm:/configuration/${self:custom.stage}/iam/path~true, ssm:/configuration/default/iam/path~true, "/"}
+      permissionsBoundary: ${ssm:/configuration/${self:custom.stage}/iam/permissionsBoundaryPolicy~true, ssm:/configuration/default/iam/permissionsBoundaryPolicy~true, ""}
       statements:
         - Effect: "Allow"
           Action:
@@ -45,18 +41,11 @@ provider:
 custom:
   stage: ${opt:stage, self:provider.stage}
   region: ${opt:region, self:provider.region}
-  iamPath: ${ssm:/configuration/${self:custom.stage}/iam/path~true, ssm:/configuration/default/iam/path~true, "/"}
-  iamPermissionsBoundaryPolicy: ${ssm:/configuration/${self:custom.stage}/iam/permissionsBoundaryPolicy~true, ssm:/configuration/default/iam/permissionsBoundaryPolicy~true, ""}
   serverlessTerminationProtection:
-    stages: # This is a list of common names for important envs that should not be destroyed.  You can remove the stage names your project doesn't use; this list is meant to be inclusive.
+    stages:
       - master
       - val
       - production
-      - develop
-      - main
-      - impl
-      - val
-      - prod
   scripts:
     hooks:
       # This script is run locally when running 'serverless deploy'
@@ -73,9 +62,6 @@ custom:
       - local-uploads # This is a little silly, but I've spent enough time on it.
         # the serverless-s3-local plugin starts any bucket with a BucketName
         # the attachments bucket has no name, so we need to make one up on our own
-  deploymentBucket:
-    versioning: true
-
 layers:
   clamDefs:
     package:
@@ -110,8 +96,6 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: !Sub ${self:service.name}-${self:custom.stage}-attachments-${AWS::AccountId}
-        VersioningConfiguration:
-          Status: Enabled
         BucketEncryption:
           ServerSideEncryptionConfiguration:
             - ServerSideEncryptionByDefault:
@@ -186,8 +170,6 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: !Sub ${self:service.name}-${self:custom.stage}-avscan-${AWS::AccountId}
-        VersioningConfiguration:
-          Status: Enabled
         BucketEncryption:
           ServerSideEncryptionConfiguration:
             - ServerSideEncryptionByDefault:

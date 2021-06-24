@@ -8409,9 +8409,9 @@ postcss-value-parser@^4.1.0:
   integrity sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
 
 postcss@^7.0.14, postcss@^7.0.32, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.35"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.35.tgz#d2be00b998f7f211d8a276974079f2e92b970e24"
-  integrity sha512-3QT8bBJeX/S5zKTTjTCIjRF3If4avAT6kqxcASlTWEtAFCb9NH0OUxNDfgZSWdP5fJnBYCMEWkIFfWeugjzYMg==
+  version "7.0.36"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
@@ -9315,13 +9315,6 @@ serverless-bundle@^4.3.1:
     webpack-node-externals "^2.5.2"
     webpack-permissions-plugin "^1.0.8"
 
-serverless-deployment-bucket@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/serverless-deployment-bucket/-/serverless-deployment-bucket-1.5.1.tgz#39e436b9239a9101dce31672a10349173b118d51"
-  integrity sha512-CoMpzSOLh1+xeEk7nnhp6Atu4hcVa8O/ayuoruPUg9R8oRgNzR1ZxKlOhMxoUozCNdgGp4viQ5YyO9Fblr0lrQ==
-  dependencies:
-    chalk "^2.4.2"
-
 serverless-dotenv-plugin@^3.0.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/serverless-dotenv-plugin/-/serverless-dotenv-plugin-3.9.0.tgz#0d82704a3911c1051a1f566a30aaa5f278ad4ae3"
@@ -9383,12 +9376,13 @@ serverless-plugin-scripts@^1.0.2:
   resolved "https://registry.yarnpkg.com/serverless-plugin-scripts/-/serverless-plugin-scripts-1.0.2.tgz#21808c3cfd0a1a84e48c0660b0f6f370b5665486"
   integrity sha1-IYCMPP0KGoTkjAZgsPbzcLVmVIY=
 
-serverless-plugin-warmup@^4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/serverless-plugin-warmup/-/serverless-plugin-warmup-4.9.0.tgz#4617a10e2b95d166647abab557b55aea9e5ae0ef"
-  integrity sha512-o6u0Wovyjm1tJNsa38oHOKEjmjBdhie8sCIlCCUAtHZza7L7y9WgtHTFqK6QGTl7O6sbw98vB8z4pNsSQGH6YA==
-  dependencies:
-    fs-extra "^9.0.0"
+serverless-plugin-warmup@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/serverless-plugin-warmup/-/serverless-plugin-warmup-5.3.1.tgz#cc8ca43452c5468a79a7b5447c84267035fa8d1e"
+  integrity sha512-+nY6VCTLf/VjwkwAudtCXE/neaYSKy+9NmnYTSL0y8ZGfKB6u9Hrh9J2vqYEcam6eQFnCAEsch9iTs/dbU2vGg==
+
+serverless-s3-bucket-helper@./plugins/serverless-s3-bucket-helper:
+  version "1.0.0"
 
 serverless-stack-termination-protection@^1.0.4:
   version "1.0.4"
